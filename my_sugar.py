@@ -1,11 +1,3 @@
-# my_sugar.py
-# Mini Python shorthand library
-# Author: Your Name
-# Version: 1.0
-
-from contextlib import contextmanager
-from functools import reduce
-
 # -------------------
 # 2. Print multiple times
 # -------------------
@@ -93,9 +85,27 @@ def whileit(cond_func):
     return WhileIt(cond_func)
 
 # -------------------
-# 8. Misc
+# 7b. Looping sugar
 # -------------------
-def swap(a,b): return b,a
-def rangeit(*args): return list(range(*args))
-def lenit(obj): return len(obj)
+from contextlib import contextmanager
 
+@contextmanager
+def looping(n=None, cond=None):
+    """
+    Looping sugar.
+    - If n is given, loops n times (0..n-1)
+    - If cond is given, loops while cond() is True
+    Usage:
+        with looping(n=5) as i:
+            print(i)
+        with looping(cond=lambda: x < 10) as _:
+            do_something()
+    """
+    if n is not None:
+        for i in range(n):
+            yield i
+    elif cond is not None:
+        while cond():
+            yield None
+    else:
+        raise ValueError("Provide either n or cond for looping.")
