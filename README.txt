@@ -1,116 +1,75 @@
-My_Sugar Python Library
+Mini Python Shorthand Library – my_sugar.py
 
-My_Sugar is an innovative Python library that provides over 20 shorthand utilities designed to make coding faster, cleaner, and far more enjoyable. Whether you are working with loops, mathematical operations, strings, booleans, or general flow control, this library streamlines everyday tasks and reduces repetitive boilerplate code. It is especially useful for beginners who want to simplify Python syntax, as well as experienced developers looking for a lightweight productivity boost.
+Author: Your Name
+Version: 1.0
 
-Installation Instructions
+A lightweight Python library designed to make everyday coding shorter, cleaner, and more readable. It provides shorthand functions for printing, math, strings, flow control, and more.
 
-Clone the Repository or Download Files: Obtain the library files from GitHub or another source.
+Features
+1. Print Multiple Times
+printn("Hello", n=3)  # Prints "Hello" 3 times
 
-Place my_sugar.py: Ensure that the file my_sugar.py is in the same directory as your Python project for easy importing.
+2. Math Utilities
+add(1,2,3)        # 6
+mul(2,3,4)        # 24
+sq(5)             # 25
+cube(3)           # 27
+maxit(1,4,2)      # 4
+minit(1,4,2)      # 1
+reduceit([1,2,3], lambda x,y: x+y)  # 6
 
-Import into Your Project: Use the following line in your scripts to access all shorthand utilities:
+3. String Utilities
+repeat("ha", 3)  # "hahaha"
 
-from my_sugar import *
+4. Boolean Utilities
+yes()  # True
+no()   # False
 
-This setup allows you to immediately start using the powerful shorthand functions included in the library.
-
-Shorthand Utilities Overview
-
-Loops:
-
-with loop(n): – a context manager for repeating a block of code n times.
-
-loop_do(n).do(func) – execute a function multiple times with minimal syntax.
-
-Printing:
-
-printn(text, n) – print a given text multiple times quickly and efficiently.
-
-Mathematical Functions:
-
-add(a, b, ...) – sum of multiple numbers.
-
-mul(a, b, ...) – product of multiple numbers.
-
-sq(x) – square a number.
-
-cube(x) – cube a number.
-
-maxit(...) – get the maximum value among arguments.
-
-minit(...) – get the minimum value among arguments.
-
-reduceit(iterable, func, start=None) – shorthand for applying a reduce operation on an iterable.
-
-Strings:
-
-repeat(s, n) – repeat a string s a specified number of times.
-
-Booleans:
-
-yes() – returns True.
-
-no() – returns False.
-
-Function Utilities:
-
-@short – a decorator that prints a message whenever a function is executed.
-
-flip(func) – reverses the arguments of a given function for flexible usage.
-
-chain(func1, func2, ...) – chain multiple functions together in sequence.
-
-Iterables and Flow Control:
-
-each(iterable).do(func) – iterate over elements of an iterable with a concise syntax.
-
-ifit(cond).then(func) – shorthand for conditional execution.
-
-whileit(cond_func).do(func) – shorthand for while loops using a condition function.
-
-Miscellaneous Utilities:
-
-swap(a, b) – quickly swap two variable values.
-
-rangeit(...) – shorthand version of the range function for easy iteration.
-
-lenit(obj) – shorthand for computing the length of objects like lists, strings, or tuples.
-
-Example Usage
-
-from my_sugar import *
-
-# Loops
-with loop(3):
-    print("Hello")
-
-loop_do(2).do(lambda: print("World"))
-
-# Math operations
-print(add(2,3,4))        # 9
-print(mul(2,3,4))        # 24
-print(sq(5))              # 25
-print(cube(3))            # 27
-
-# Strings
-print(repeat("Hi!", 3)) # Hi!Hi!Hi!
-
-# Flow control
-each([1,2,3]).do(lambda x: print(x*2))
-ifit(5>3).then(lambda: print("Yes"))
-
-# Booleans
-print(yes())             # True
-print(no())              # False
-
-# Function decorator
+5. Function Utilities
 @short
 def greet():
-    print("Greetings!")
-greet()
+    print("Hello")
+# Prints: Running greet...
+#         Hello
 
-Benefits and Use Cases
+flip(lambda a,b: a-b)(2,5)  # 3
+chain(lambda x: x+1, lambda x: x*2)(3)  # 8
 
-My_Sugar is perfect for learning Python, experimenting with concise coding patterns, or rapidly prototyping scripts. It reduces repetitive code, allows beginners to write clean and understandable Python, and helps experienced programmers focus on logic instead of boilerplate. Whether you are creating educational projects, automation scripts, or experimenting with new ideas, My_Sugar streamlines your workflow and encourages playful, productive coding.
+6. Iterables / Flow
+# Looping through each element
+each([1,2,3]).do(print)
 
-The library is fully open for modification and expansion, so users can continue to add new shorthand utilities tailored to their own coding style and project needs. With My_Sugar, Python coding becomes faster, cleaner, and a lot more fun!
+# Conditional execution
+ifit(5 > 3).then(lambda: print("Yes!"))
+
+# While loop with condition function
+x = 0
+whileit(lambda: x < 3).do(lambda: (print(x), globals().update(x=x+1)))
+
+# Looping sugar
+with looping(n=3) as i:
+    print(i)  # Prints 0, 1, 2
+
+x = 0
+with looping(cond=lambda: x < 2) as _:
+    print(x)
+    x += 1
+
+7. Misc Utilities
+swap(1,2)      # (2,1)
+rangeit(5)     # [0,1,2,3,4]
+lenit([1,2,3]) # 3
+
+Installation
+
+Simply download my_sugar.py and place it in your project folder:
+
+# Clone or copy the file into your project
+from my_sugar import *
+
+
+No external dependencies required.
+
+Philosophy
+
+This library is designed for beginners and anyone who wants Python code to read more like “mini-language” shorthand. It emphasizes simplicity, readability, and playful coding.
