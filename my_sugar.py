@@ -7,26 +7,6 @@ from contextlib import contextmanager
 from functools import reduce
 
 # -------------------
-# 1. Loops
-# -------------------
-
-@contextmanager
-def loop(times):
-    """Context manager loop: with loop(n): do stuff"""
-    for _ in range(times):
-        yield
-
-class Loop:
-    """loop.do(times).do(func)"""
-    def __init__(self, times):
-        self.times = times
-    def do(self, func):
-        for _ in range(self.times):
-            func()
-def loop_do(times):
-    return Loop(times)
-
-# -------------------
 # 2. Print multiple times
 # -------------------
 def printn(text, n=1):
